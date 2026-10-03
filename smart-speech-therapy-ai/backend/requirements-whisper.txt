@@ -1,0 +1,16 @@
+# Optional dependencies for real neural speech-to-text (Whisper via
+# Hugging Face Transformers) — genuinely multilingual, including Arabic.
+#
+# NOT installed by default (requirements.txt) because torch is large
+# (~1-2GB) and most deployments can run fine on the built-in PocketSphinx
+# backend. Install this file only if you want ASR_BACKEND=whisper.
+#
+# Install with the CPU-only PyTorch build (much smaller, no GPU required):
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   pip install -r requirements-whisper.txt
+#
+# If you have an NVIDIA GPU and want CUDA acceleration, just:
+#   pip install -r requirements-whisper.txt
+# (plain PyPI `torch` pulls in the CUDA build automatically on Linux)
+
+transformers==5.16.1

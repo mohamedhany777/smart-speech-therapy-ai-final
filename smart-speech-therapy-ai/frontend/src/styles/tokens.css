@@ -1,0 +1,94 @@
+/* ==========================================================
+   Design tokens — Smart Speech Therapy AI
+
+   Palette rationale: speech/voice work is warm and human, not clinical-cold
+   or gimmicky. Base is a quiet misty sage (not the common AI-cream), paired
+   with a calm deep teal for trust/focus and a warm amber for progress and
+   achievement (games, streaks). A muted brick-red is reserved ONLY for
+   destructive/error states, never decorative.
+
+   Signature element: a waveform motif (see WaveDivider component) used as
+   the section divider and loading indicator — a direct nod to the
+   subject (speech/audio) rather than a generic decorative shape.
+   ========================================================== */
+:root {
+  /* Color */
+  --color-bg: #f4f6f3;              /* misty sage paper */
+  --color-surface: #ffffff;
+  --color-surface-muted: #eaeee6;
+  --color-ink: #16302b;             /* deep forest-teal, near-black */
+  --color-ink-soft: #4b5c56;
+  --color-primary: #2f6f62;         /* calm teal */
+  --color-primary-dark: #1f4f45;
+  --color-primary-soft: #dcebe6;
+  --color-accent: #e0a83e;          /* warm amber — progress / achievement */
+  --color-accent-soft: #fbeecd;
+  --color-danger: #b8492f;          /* muted brick — errors only */
+  --color-danger-soft: #f6e3dd;
+  --color-border: #d9ddd3;
+
+  /* Text-on-color pairs, so button labels stay readable when the
+     underlying color's lightness flips between themes (see dark mode). */
+  --color-on-primary: #ffffff;
+  --color-on-accent: #16302b;
+  --color-on-danger: #ffffff;
+
+  /* Type */
+  --font-display: "Fraunces", "Amiri", serif;
+  --font-body: "Cairo", "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.5rem;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  --shadow-card: 0 1px 2px rgba(22, 48, 43, 0.04), 0 8px 24px rgba(22, 48, 43, 0.06);
+}
+
+[dir="rtl"] {
+  --font-body: "Cairo", "Tahoma", sans-serif;
+}
+
+/* ==========================================================
+   Dark mode — a genuine second palette, not an inverted filter.
+   Deep teal-black base (not pure black) keeps the same calm, warm
+   character as the light theme; primary/accent are brightened for
+   contrast against the dark surface rather than reused as-is.
+   ========================================================== */
+[data-theme="dark"] {
+  --color-bg: #0f1a17;
+  --color-surface: #16221e;
+  --color-surface-muted: #1e2b26;
+  --color-ink: #eef4f1;
+  --color-ink-soft: #a8bdb5;
+  --color-primary: #5fb3a0;
+  --color-primary-dark: #7fcab8;
+  --color-primary-soft: #1f3a34;
+  --color-accent: #f0bd5a;
+  --color-accent-soft: #3a2f14;
+  --color-danger: #e0836a;
+  --color-danger-soft: #3a2019;
+  --color-border: #2a3a34;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.25), 0 8px 24px rgba(0, 0, 0, 0.35);
+
+  --color-on-primary: #0f1a17;
+  --color-on-accent: #16302b;
+  --color-on-danger: #16221e;
+}

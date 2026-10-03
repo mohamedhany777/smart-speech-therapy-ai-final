@@ -1,0 +1,40 @@
+fastapi==0.142.2
+uvicorn[standard]==0.30.6
+pydantic==2.9.2
+pydantic-settings==2.5.2
+sqlalchemy==2.0.35
+alembic==1.13.3
+psycopg2-binary==2.9.9
+python-jose[cryptography]==3.4.0
+# Pinned explicitly (not left as an implicit transitive dependency):
+# python-jose 3.4.0 hard-requires pyasn1<0.5.0, and the newest release in
+# that range (0.4.8) still has known CVEs with no compatible fix available.
+# This is a real, currently-unresolved supply-chain gap — see
+# docs/FINAL_UPGRADE_PLAN.md's security section for the full writeup and
+# the recommended migration off python-jose entirely (to PyJWT, which has
+# no such constraint) as follow-up work, not something to rush here since
+# it touches every access/refresh token issued by the platform.
+pyasn1==0.4.8
+passlib==1.7.4
+bcrypt==4.0.1
+python-multipart==0.0.31
+email-validator==2.2.0
+redis==5.0.8
+python-dotenv==1.2.2
+httpx==0.27.2  # also used by app/services/web_search.py at runtime
+
+# dev / test
+pytest==9.0.3
+pytest-asyncio==1.4.0
+
+# audio processing / RAG (real signal processing + retrieval, no external model downloads)
+librosa==1.0.0
+numpy==2.4.4
+scikit-learn==1.8.0
+soundfile==0.14.0
+pypdf==6.19.0
+python-docx==1.2.0
+pocketsphinx==5.1.1
+qdrant-client==1.19.0
+openai==3.6.0
+opencv-python-headless==4.13.0.92
