@@ -1,0 +1,35 @@
+# Single-service Railway build: React frontend + FastAPI backend
+FROM node:20-slim AS frontend
+WORKDIR /fe
+COPY frontend/package.json frontend/package-lock.json ./
+RUN npm ci
+COPY frontend/ ./
+RUN npm run build
+
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libpq-dev build-essential cmake curl libsndfile1 libportaudio2 \
+        ffmpeg libgl1 libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY backend/requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY backend/ .
+COPY --from=frontend /fe/dist /app/static
+
+RUN useradd --create-home --uid 1000 appuser \
+    && mkdir -p /app/storage /app/qdrant_storage \
+    && chown -R appuser:appuser /app
+USER appuser
+
+EXPOSE 8000
+
+CMD alembic upgrade head && python scripts/seed.py && uvicorn app.railway_app:app --host 0.0.0.0 --port ${PORT:-8000}

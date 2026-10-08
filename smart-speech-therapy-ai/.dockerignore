@@ -1,0 +1,14 @@
+backend/.env
+backend/.env.*
+!backend/.env.example
+backend/.pytest_cache/
+backend/tests/
+**/__pycache__/
+**/*.pyc
+**/*.db
+**/*.sqlite3
+backend/storage/
+backend/qdrant_storage/
+frontend/node_modules/
+frontend/dist/
+.git
